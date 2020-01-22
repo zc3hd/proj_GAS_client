@@ -40,6 +40,7 @@ CL.prototype = {
         // console.log(res.data);
         data = data.data;
 
+
         // 今日不能提交
         if (data.res == -1) {
           console.log("**************今日 不是 push日**************");
@@ -65,16 +66,17 @@ CL.prototype = {
     me.opt.dayPush = me.opt.dayPush_min + Math.floor(Math.random() * (me.opt.dayPush_max - me.opt.dayPush_min + 1));
 
     // ******测试数据
-    me.opt.dayPush = 3;
+    // me.opt.dayPush = 3;
     console.log(` 2.今日提交 ${me.opt.dayPush} 条`);
 
 
     // 计算每个任务的等待时间
     var arr = me._exec_plans_time();
     // *******测试数据
-    for (var j = 0; j < arr.length; j++) {
-      arr[j] = (j + 1) * 30 * 1000;
-    }
+    // for (var j = 0; j < arr.length; j++) {
+    //   arr[j] = (j + 1) * 30 * 1000;
+    // }
+
     console.log(` 3.提交时间间隔 ${arr}`);
 
     // 按照计算的时间执行
