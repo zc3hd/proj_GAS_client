@@ -36,15 +36,18 @@ CL.prototype = {
       .post(`http://${conf.GAS_server_ip}:${conf.GAS_server_port}${conf.GAS_url}`, {
         flag: conf.GAS_flag,
       })
-      .then(function(res) {
+      .then(function(data) {
         // console.log(res.data);
+        data = data.data;
 
         // 今日不能提交
-        if (res.data.res == -1) {
+        if (data.res == -1) {
+          console.log("今日不是push日");
           return;
         }
+        console.log("今日是push日");
         // 今日可提交
-        me.opt = res.data;
+        me.opt = data;
 
 
         // 开启执行计划
