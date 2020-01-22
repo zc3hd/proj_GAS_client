@@ -73,7 +73,7 @@ CL.prototype = {
     var arr = me._exec_plans_time();
     // *******测试数据
     for (var j = 0; j < arr.length; j++) {
-      arr[j] = (j + 1) * 10 * 1000;
+      arr[j] = (j + 1) * 30 * 1000;
     }
     console.log(` 3.提交时间间隔 ${arr}`);
 
