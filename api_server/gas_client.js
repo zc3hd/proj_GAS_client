@@ -42,18 +42,19 @@ CL.prototype = {
 
         // 今日不能提交
         if (data.res == -1) {
-          console.log("今日不是push日");
+          console.log("**************今日 不是 push日**************");
           return;
         }
-        console.log("今日是push日");
+        console.log("**************今日 是 push日**************");
         // 今日可提交
         me.opt = data;
-
+        console.log(" 1.获取到GAS_server的client配置项");
 
         // 开启执行计划
-        // me._exec_plans();
+        me._exec_plans();
+
         // 执行一次
-        me._exec();
+        // me._exec();
       });
   },
   // ----------------------------------------------------计算今日提交几次，且什么时候提交
@@ -64,9 +65,18 @@ CL.prototype = {
     // 计算每个任务的等待时间
     var arr = me._exec_plans_time();
 
+    console.log(` 2.今日提交 ${me.opt.dayPush} 条`);
+
+    // 测试数据
+    for (var j = 0; j < arr.length; j++) {
+      arr[j] = (j + 1) * 1000
+    }
+    console.log(` 3.提交时间间隔 ${arr}`);
+
     // 按照计算的时间执行
     for (var i = 0; i < arr.length; i++) {
-      setTimeout(() => {
+
+      setTimeout(function() {
         me._exec();
       }, arr[i]);
     }
