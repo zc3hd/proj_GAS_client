@@ -61,22 +61,26 @@ CL.prototype = {
   _exec_plans: function() {
     var me = this;
 
+    // 今日提交几次
+    me.opt.dayPush = me.opt.dayPush_min + Math.floor(Math.random() * (me.opt.dayPush_max - me.opt.dayPush_min + 1));
+
+    // ******测试数据
+    me.opt.dayPush = 3;
+    console.log(` 2.今日提交 ${me.opt.dayPush} 条`);
+
 
     // 计算每个任务的等待时间
     var arr = me._exec_plans_time();
-
-    console.log(` 2.今日提交 ${me.opt.dayPush} 条`);
-
-    // 测试数据
+    // *******测试数据
     for (var j = 0; j < arr.length; j++) {
-      arr[j] = (j + 1) * 1000
+      arr[j] = (j + 1) * 10 * 1000;
     }
     console.log(` 3.提交时间间隔 ${arr}`);
 
     // 按照计算的时间执行
     for (var i = 0; i < arr.length; i++) {
-
       setTimeout(function() {
+        console.log(` 4.执行一次提交`);
         me._exec();
       }, arr[i]);
     }
@@ -85,8 +89,7 @@ CL.prototype = {
   // 计算每个任务的等待时间
   _exec_plans_time: function() {
     var me = this;
-    // 今日提交几次
-    me.opt.dayPush = me.opt.dayPush_min + Math.floor(Math.random() * (me.opt.dayPush_max - me.opt.dayPush_min + 1));
+
 
     // 时间戳差：记录今日结束，还有多长时间
     me.opt.len = me._stamp() + 24 * 3600 * 1000 - Date.now() - 1 * 3600 * 100;
@@ -120,12 +123,18 @@ CL.prototype = {
     // 1.读取文件
     me._read()
       .then(function(arr) {
+        console.log(`  4.1 读取文件成功`);
+
         // 2.数组修改
         arr = me._upd(arr);
+        console.log(`  4.2 修改文件内容`);
+
         // 3.写入文件
         return me._write(arr)
       })
       .then(function(res) {
+
+        console.log(`  4.3 保存文件成功`);
         // 4. 提交一次
         return me._push();
       })
@@ -136,6 +145,7 @@ CL.prototype = {
     return new Promise(function(resolve, reject) {
       fs.readJson(path.join(__dirname, me.opt.filePath))
         .then(function(data) {
+
           resolve(data);
         })
     });
@@ -179,18 +189,31 @@ CL.prototype = {
       // 这里会自动向GitHub上下载webapp文件
       me._cmd(`git pull origin master`)
         .then(function() {
-          // 找到 要提交的目录
+          console.log(`  4.4 下拉线上成功`);
+
+
+          // -----------------------------------------------找到 要提交的目录
           return me._cmd(`git add ${path.join(__dirname, '../')}`);
         })
         .then(function() {
-          // 做提交的注释commit
+          console.log(`  4.5 git add ..`);
+
+
+
+          // -----------------------------------------------做提交的注释commit
           return me._cmd(`git commit -m "upd: ${me._time()}"`);
         })
         .then(function() {
-          // 提交
+          console.log(`  4.6 git commit -m "upd: ${me._time()}"`);
+
+
+
+          // ------------------------------------------------提交
           return me._cmd(`git push -u origin master`)
         })
         .then(function() {
+          console.log(`  4.7 git push -u origin master`);
+
           console.log('******************push GitHub success*******************');
           resolve();
         });
@@ -225,7 +248,7 @@ CL.prototype = {
         if (error !== null) {
           console.log('exec error: ' + error);
         }
-        console.log(stdout, stderr)
+        // console.log(stdout, stderr)
         resolve();
       });
     });
