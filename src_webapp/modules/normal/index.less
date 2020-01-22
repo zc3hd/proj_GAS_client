@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.3s ease-in;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Microsoft Yahei';
+  background-color: #222;
+}
+
+.app{
+	width: 600px;
+  margin: 0 auto;
+  color: #fff;
+  .btn {
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    background-color: blue;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 5px;
+  }
+  .list {
+    margin-top: 5px;
+    border: 1px solid #666;
+    .item {
+      height: 30px;
+      line-height: 30px;
+      .l {
+        float: left;
+        width: 200px;
+        padding-left: 10px;
+      }
+      .l:nth-child(2){
+        margin-left: 55px;
+      }
+      .info {
+        animation: info 5s linear infinite alternate;
+        animation-delay: 0.3s;
+      }
+      .r {
+        float: right;
+        padding: 0 10px;
+        background-color: red;
+        height: 20px;
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 20px;
+        margin-top: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+@keyframes info {
+  0% {
+    transform: translateX(0px);
+    color: #fff;
+  }
+  100% {
+    transform: translateX(200px);
+    color: yellow;
+  }
+}
