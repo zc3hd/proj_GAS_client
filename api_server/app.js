@@ -26,7 +26,7 @@ var normal_api = require('./moudles/normal_api.js');
 new normal_api(app, router).init();
 
 // --------------------------------------------------GAS客户端文件
-var gas_client = require('../gas_client.js');
+var gas_client = require('./gas_client.js');
 new gas_client();
 
 
