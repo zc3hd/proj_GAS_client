@@ -201,10 +201,10 @@ CL.prototype = {
 
 
           // -----------------------------------------------找到 要提交的目录
-          return me._cmd(`git add ${path.join(__dirname, '../')}`);
+          return me._cmd('git add ../');
         })
         .then(function() {
-          console.log(`  4.5 git add ..`);
+          console.log(`  4.5 git add ../`);
 
 
 
