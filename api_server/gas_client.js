@@ -1,7 +1,8 @@
 var axios = require('axios');
 var fs = require('fs-extra');
 var path = require('path');
-var process = require('child_process');
+var cmd = require('../cmd.js');
+
 
 
 // 配置项
@@ -195,29 +196,30 @@ CL.prototype = {
     return new Promise(function(resolve, reject) {
       // 一般都是webapp 文件改变，如果api文件改变，需要重启，
       // 这里会自动向GitHub上下载webapp文件
-      me._cmd(`git pull origin master`)
+      cmd.init(`git pull origin master`)
         .then(function() {
           console.log(`  4.4 下拉线上成功`);
 
 
           // -----------------------------------------------找到 要提交的目录
-          return me._cmd('git add ../');
+          var url = path.join(__dirname, '../')
+          return cmd.init(`git add ${url}`);
         })
         .then(function() {
-          console.log(`  4.5 git add ../`);
+          console.log(`  4.5 git add ${url}`);
 
 
 
           // -----------------------------------------------做提交的注释commit
-          return me._cmd(`git commit -m "upd: ${me._time()}"`);
+          return cmd.init(`git commit -m "upd:${me._time()}"`);
         })
         .then(function() {
-          console.log(`  4.6 git commit -m "upd: ${me._time()}"`);
+          console.log(`  4.6 git commit -m "upd:${me._time()}"`);
 
 
 
           // ------------------------------------------------提交
-          return me._cmd(`git push -u origin master`)
+          return cmd.init(`git push -u origin master`)
         })
         .then(function() {
           console.log(`  4.7 git push -u origin master`);
@@ -248,18 +250,6 @@ CL.prototype = {
     ss = date.getSeconds();
 
     return `${y}-${m}-${r} ${HH}:${mm}:${ss}`;
-  },
-  // 命令
-  _cmd: function(shell) {
-    return new Promise(function(resolve, reject) {
-      process.exec(shell, function(error, stdout, stderr) {
-        if (error !== null) {
-          console.log('exec error: ' + error);
-        }
-        // console.log(stdout, stderr)
-        resolve();
-      });
-    });
   },
   // 今日时间戳
   _stamp: function() {
