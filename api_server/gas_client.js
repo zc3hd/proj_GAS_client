@@ -8,13 +8,14 @@ var cmd = require('../cmd.js');
 // 配置项
 var conf = {
   //  服务IP、服务端口
-  // GAS_server_ip: "127.0.0.1", 
-  // GAS_server_port: 1011,     // 本地
+  GAS_server_ip: "127.0.0.1",
+  GAS_server_port: 1011, // 本地
 
 
   //  服务IP、服务端口
-  GAS_server_ip: "172.17.134.123",
-  GAS_server_port: 8888, // 线上
+  // GAS_server_ip: "172.17.134.123",
+  // GAS_server_ip: "47.94.202.107",
+  // GAS_server_port: 8888, // 线上
 
 
   // 请求地址
@@ -206,7 +207,7 @@ CL.prototype = {
           return cmd.init(`git add ${url}`);
         })
         .then(function() {
-          console.log(`  4.5 git add ${url}`);
+          console.log(`  4.5 git add ..`);
 
 
 
