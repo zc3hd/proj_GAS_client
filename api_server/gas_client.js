@@ -28,11 +28,14 @@ function CL() {
   // 请求过来的数据挂载到全局
   me.opt = {};
 
-  // setInterval(function() {
-  //   me.init();
-  // }, 24 * 3600 * 1000);
 
   me.init();
+
+  setInterval(function() {
+    me.init();
+  }, 24 * 3600 * 1000);
+
+  // 
 
 };
 CL.prototype = {
@@ -46,7 +49,7 @@ CL.prototype = {
       .then(function(data) {
         // console.log(res.data);
         data = data.data;
-        console.log(data);
+        // console.log(data);
 
 
 
@@ -61,11 +64,11 @@ CL.prototype = {
         console.log(" 1.获取到GAS_server的client配置项");
 
         // 开启执行计划
-        // me._exec_plans();
+        me._exec_plans();
 
-        console.log("---------------------------------------------------");
-        // 执行一次
-        me._exec();
+        // console.log("---------------------------------------------------");
+        // // 执行一次
+        // me._exec();
       });
   },
   // ----------------------------------------------------计算今日提交几次，且什么时候提交
