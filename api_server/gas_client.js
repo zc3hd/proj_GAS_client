@@ -46,6 +46,8 @@ CL.prototype = {
       .then(function(data) {
         // console.log(res.data);
         data = data.data;
+        console.log(data);
+
 
 
         // 今日不能提交
@@ -61,6 +63,7 @@ CL.prototype = {
         // 开启执行计划
         // me._exec_plans();
 
+        console.log("---------------------------------------------------");
         // 执行一次
         me._exec();
       });
