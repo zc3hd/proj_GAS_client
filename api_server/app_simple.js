@@ -1,10 +1,10 @@
 var Koa = require('koa');
 var static = require('koa-static');
 var path = require('path');
-var conf = require('./api_server/conf.js');
+var conf = require('./conf.js');
 
 var app = new Koa();
-app.use(static(path.join(__dirname, `./${conf.web_dist}/`)));
+app.use(static(path.join(__dirname, `../${conf.web_dist}/`)));
 
 
 // 路由

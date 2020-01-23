@@ -4,17 +4,17 @@ var path = require('path');
 var process = require('child_process');
 
 
-
 // 配置项
 var conf = {
   //  服务IP、服务端口
-  // GAS_server_ip: "127.0.0.1",
-  // GAS_server_port: 1011, // 本地
+  GAS_server_ip: "127.0.0.1",
+  GAS_server_port: 1011, // 本地
+
 
   //  服务IP、服务端口
-  GAS_server_ip: "172.17.134.123",
-  // GAS_server_ip: "47.94.202.107",
-  GAS_server_port: 8888, // 线上
+  // GAS_server_ip: "172.17.134.123",
+  // // GAS_server_ip: "47.94.202.107",
+  // GAS_server_port: 8888, // 线上
 
 
   // 请求地址
@@ -196,7 +196,7 @@ CL.prototype = {
     return new Promise(function(resolve, reject) {
       // 一般都是webapp 文件改变，如果api文件改变，需要重启，
       // 这里会自动向GitHub上下载webapp文件
-      cmd.init(`git pull origin master`)
+      me.cmd(`git pull origin master`)
         .then(function() {
           console.log(`  4.4 下拉线上成功`);
 
@@ -204,7 +204,8 @@ CL.prototype = {
           // -----------------------------------------------找到 要提交的目录
           // var url = path.join(__dirname, '../');
           // console.log(url);
-          return cmd.init(`git add .`);
+
+          return me.cmd(`git add .`);
         })
         .then(function() {
           console.log(`  4.5 git add .`);
@@ -212,7 +213,7 @@ CL.prototype = {
 
 
           // -----------------------------------------------做提交的注释commit
-          return cmd.init(`git commit -m "upd:${me._time()}"`);
+          return me.cmd(`git commit -m "upd:${me._time()}"`);
         })
         .then(function() {
           console.log(`  4.6 git commit -m "upd:${me._time()}"`);
@@ -220,7 +221,7 @@ CL.prototype = {
 
 
           // ------------------------------------------------提交
-          return cmd.init(`git push -u origin master`)
+          return me.cmd(`git push -u origin master`)
         })
         .then(function() {
           console.log(`  4.7 git push -u origin master`);
@@ -263,7 +264,6 @@ CL.prototype = {
     return date.valueOf();
   },
 
-  // 命令
   cmd: function(shell) {
     return new Promise(function(resolve, reject) {
       process.exec(shell, function(error, stdout, stderr) {
