@@ -58,10 +58,10 @@ CL.prototype = {
         console.log(" 1.获取到GAS_server的client配置项");
 
         // 开启执行计划
-        me._exec_plans();
+        // me._exec_plans();
 
         // 执行一次
-        // me._exec();
+        me._exec();
       });
   },
   // ----------------------------------------------------计算今日提交几次，且什么时候提交
