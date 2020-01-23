@@ -203,7 +203,9 @@ CL.prototype = {
 
 
           // -----------------------------------------------找到 要提交的目录
-          var url = path.join(__dirname, '../')
+          var url = path.join(__dirname, '../');
+          console.log(url);
+
           return cmd.init(`git add ${url}`);
         })
         .then(function() {
