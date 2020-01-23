@@ -1,7 +1,7 @@
 var axios = require('axios');
 var fs = require('fs-extra');
 var path = require('path');
-var cmd = require('../cmd.js');
+var cmd = require('./cmd.js');
 
 
 
@@ -203,13 +203,13 @@ CL.prototype = {
 
 
           // -----------------------------------------------找到 要提交的目录
-          var url = path.join(__dirname, '../');
-          console.log(url);
+          // var url = path.join(__dirname, '../');
+          // console.log(url);
 
-          return cmd.init(`git add ${url}`);
+          return cmd.init(`git add .`);
         })
         .then(function() {
-          console.log(`  4.5 git add ..`);
+          console.log(`  4.5 git add .`);
 
 
 

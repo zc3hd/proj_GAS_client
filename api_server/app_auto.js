@@ -8,13 +8,13 @@ switch (env) {
   // 简单的与前端联调
   case "api_simple":
     console.log("与前端简单联调测试 热开启");
-    src = path.join(__dirname, './app_simple.js');
+    src = path.join(__dirname, '../app_simple.js');
     break;
 
     // 后台开发模式
   case "api_only":
     console.log("后台开发 热启动");
-    src = path.join(__dirname, './app.js');
+    src = path.join(__dirname, '../app.js');
     break;
 };
 
