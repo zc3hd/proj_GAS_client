@@ -106,7 +106,7 @@ CL.prototype = {
 
 
     // 时间戳差：记录今日结束，还有多长时间
-    me.opt.len = me._stamp() + 24 * 3600 * 1000 - Date.now() - 1 * 3600 * 100;
+    me.opt.len = me._stamp() + 24 * 3600 * 1000 - Date.now() - 1 * 3600 * 1000;
 
     var arr = [];
     var sum = 0;
