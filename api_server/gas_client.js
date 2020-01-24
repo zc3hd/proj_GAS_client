@@ -30,7 +30,6 @@ function CL() {
 
 
   me.init();
-
   setInterval(function() {
     me.init();
   }, 24 * 3600 * 1000);
